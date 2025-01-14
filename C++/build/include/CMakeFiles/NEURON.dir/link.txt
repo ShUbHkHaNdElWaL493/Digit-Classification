@@ -1,0 +1,2 @@
+/usr/bin/ar qc libNEURON.a CMakeFiles/NEURON.dir/neuron.cpp.o
+/usr/bin/ranlib libNEURON.a

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libDATAPACK.a CMakeFiles/DATAPACK.dir/datapack.cpp.o
+/usr/bin/ranlib libDATAPACK.a
