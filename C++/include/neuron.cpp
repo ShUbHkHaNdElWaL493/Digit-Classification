@@ -16,7 +16,6 @@ neuron::neuron(int input_size)
     {
         this->weights.push_back(dist(gen) / input_size);
     }
-    this->bias = 0;
 
 }
 
@@ -28,18 +27,16 @@ double neuron::feed_forward(std::vector<double> input)
     {
         output += input[i] * this->weights[i];
     }
-    output += this->bias;
     return output;
 
 }
 
-void neuron::back_propagate(double factor_bias, std::vector<double> factor_weights, double learn_rate)
+void neuron::back_propagate(std::vector<double> dL_dw, double learn_rate)
 {
 
     for (int i = 0; i < this->weights.size(); i++)
     {
-        this->weights[i] -= learn_rate * factor_weights[i];
+        this->weights[i] -= learn_rate * dL_dw[i];
     }
-    this->bias -= learn_rate * factor_bias;
 
 }

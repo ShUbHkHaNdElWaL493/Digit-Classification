@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "../DIGIT_CLASSIFIER"
-  "../DIGIT_CLASSIFIER.pdb"
+  "/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/DIGIT_CLASSIFIER"
+  "/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/DIGIT_CLASSIFIER.pdb"
   "CMakeFiles/DIGIT_CLASSIFIER.dir/src/main.cpp.o"
   "CMakeFiles/DIGIT_CLASSIFIER.dir/src/main.cpp.o.d"
 )

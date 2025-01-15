@@ -55,12 +55,6 @@ int main()
         std::vector<double> dL_dout(output_s.size(), 0);
         dL_dout[sample[i][0]] = -1 / output_s[sample[i][0]];
 
-        // for (int j = 0; j < dL_dout.size(); j++)
-        // {
-        //     std::cout << dL_dout[j] << " ";
-        // }
-        // std::cout << std::endl;
-
         double learn_rate = 0.01;
         std::vector<std::vector<std::vector<double>>> dL_ds = s.back_propagate(dL_dout, learn_rate);
         std::vector<std::vector<std::vector<double>>> dL_dp = p.back_propagate(dL_ds);
@@ -76,8 +70,6 @@ int main()
             std::cout << "[" << i + 1 << " steps]: Accuracy:- " << positive << "%" << std::endl;
             positive = 0;
         }
-
-        // sleep(1);
 
     }
     std::cout << "\nTraining complete!\n" << std::endl;

@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/DIGIT_CLASSIFIER.dir/src/main.cpp.o -o ../DIGIT_CLASSIFIER  include/libDATAPACK.a include/libLAYERS.a include/libNEURON.a 
+/usr/bin/c++ CMakeFiles/DIGIT_CLASSIFIER.dir/src/main.cpp.o -o "/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/DIGIT_CLASSIFIER"  include/libDATAPACK.a include/libLAYERS.a include/libNEURON.a 
