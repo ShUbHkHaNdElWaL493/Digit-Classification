@@ -63,7 +63,7 @@ void convolution_layer_2D::back_propagate(std::vector<std::vector<std::vector<do
 
     for (int i = 0; i < this->filters.size(); i++)
     {
-        std::vector<double> dL_dfilter(this->dimensions[0] * this->dimensions[1], 0);
+        std::vector<double> dL_dfilter((this->dimensions[0] * this->dimensions[1]), 0);
         for (int j = 0; j < this->dimensions[0]; j++)
         {
             for (int k = 0; k < this->dimensions[1]; k++)
@@ -72,15 +72,14 @@ void convolution_layer_2D::back_propagate(std::vector<std::vector<std::vector<do
                 {
                     for (int m = 0; m < dL_dout[i][l].size(); m++)
                     {
-                        dL_dfilter[j * this->dimensions[0] + k] += dL_dout[i][l][m] * this->input[l + j][m + k];
+                        dL_dfilter[j * this->dimensions[1] + k] += dL_dout[i][l][m] * this->input[j + l][k + m];
                     }
                 }
             }
         }
-
-        this->filters[i]->back_propagate(0, dL_dfilter, learn_rate);
-
+        this->filters[i]->back_propagate(dL_dfilter, learn_rate);
     }
+
 }
 
 pooling_layer_2D::pooling_layer_2D(std::vector<int> filter_dimensions)
@@ -181,7 +180,7 @@ softmax_layer::softmax_layer(int nodes, std::vector<int> dimensions)
 
     for (int i = 0; i < nodes; i++)
     {
-        neuron *temp = new neuron(input_size);
+        neuron *temp = new neuron(input_size + 1);
         this->nodes.push_back(temp);
     }
     
@@ -203,6 +202,7 @@ std::vector<double> softmax_layer::feed_forward(std::vector<std::vector<std::vec
             }
         }
     }
+    flattened_input.push_back(1);
     this->flattened_input = flattened_input;
 
     for (int i = 0; i < this->nodes.size(); i++)
@@ -291,7 +291,9 @@ std::vector<std::vector<std::vector<double>>> softmax_layer::back_propagate(std:
         {
             flattened_input[j] = flattened_input[j] * dL_dx[i];
         }
-        this->nodes[i]->back_propagate(dL_dx[i], flattened_input, learn_rate);
+        flattened_input.push_back(dL_dx[i]);
+        this->nodes[i]->back_propagate(flattened_input, learn_rate);
+        flattened_input.pop_back();
         for (int j = 0; j < flattened_input.size(); j++)
         {
             flattened_input[j] = flattened_input[j] / dL_dx[i];
