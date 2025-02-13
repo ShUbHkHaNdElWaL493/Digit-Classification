@@ -5,6 +5,7 @@
 #ifndef DATAPACK_H
 #define DATAPACK_H
 
+#include <fstream>
 #include <vector>
 #include <string>
 
@@ -14,19 +15,18 @@ class datapack
     
     private:
 
-    std::vector<std::vector<T>> data;
+    std::ifstream file;
+    std::vector<T> data;
 
     public:
 
-    datapack(std::vector<std::vector<T>>);
+    void open(const std::string &);
 
-    datapack(const std::string &);
+    bool next();
 
-    std::vector<T> operator[](size_t);
+    std::vector<T> get_row();
 
-    void print();
-
-    size_t size();
+    void close();
 
 };
 

@@ -37,19 +37,17 @@ def train(image, label, learn_rate = 0.005):
 print("\nMNIST CONVOLUTION NEURAL NETWORK\n")
 print("Training start!")
 
-for epoch in range(3):
+for epoch in range(1):
     correct = 0
     loss = 0
-    for i, (image, label) in enumerate(zip(train_images[:1000], train_labels[:1000])):
+    for i, (image, label) in enumerate(zip(train_images, train_labels)):
 
         l, c = train(image, label)
         correct += c
         loss += l
 
         if i % 100 == 99:
-            print("[Step %d] Average Loss %.3f | Accuracy: %d%%" % (i + 1, loss / 100, correct))
-            loss = 0
-            correct = 0
+            print("[Step %d] Average Loss %.3f | Accuracy: %d%%" % (i + 1, loss / (i + 1), 100 * correct / (i + 1)))
 
 print("Training end!")
 
@@ -57,15 +55,13 @@ print("\nTesting start!")
 
 correct = 0
 loss = 0
-for i, (image, label) in enumerate(zip(test_images[:1000], test_labels[:1000])):
+for i, (image, label) in enumerate(zip(test_images, test_labels)):
 
     _, l, c = feed_forward(image, label)
     correct += c
     loss += l
 
     if i % 100 == 99:
-        print("[Step %d] Average Loss %.3f | Accuracy: %d%%" % (i + 1, loss / 100, correct))
-        loss = 0
-        correct = 0
+        print("[Step %d] Average Loss %.3f | Accuracy: %d%%" % (i + 1, loss / (i + 1), 100 * correct / (i + 1)))
 
 print("Testing end!")

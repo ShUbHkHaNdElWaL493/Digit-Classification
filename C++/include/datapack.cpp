@@ -14,206 +14,152 @@ template class datapack<int>;
 template class datapack<std::string>;
 
 template <typename T>
-datapack<T>::datapack(std::vector<std::vector<T>> data)
+void datapack<T>::open(const std::string &path)
 {
-    this->data = data;
+
+    this->file.open(path);
+    if (!this->file.is_open())
+    {
+        std::cerr << "Error: Could not open file." << std::endl;
+        exit(EXIT_FAILURE);
+    }
+
 }
 
 template <typename T>
-datapack<T>::datapack(const std::string &path)
+bool datapack<T>::next()
 {
-    std::cerr << "Error: Unsupported type for datapack.\n";
+
+    std::cerr << "Error: Could not read line." << std::endl;
     exit(EXIT_FAILURE);
-}
-
-template <>
-datapack<char>::datapack(const std::string &path)
-{
-
-    std::ifstream file(path);
-    if (!file.is_open())
-    {
-        std::cerr << "Error: Could not open file." << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
-    std::string line;
-
-    while (std::getline(file, line))
-    {
-
-        std::stringstream ss(line);
-        std::vector<char> row;
-        std::string cell;
-
-        while (std::getline(ss, cell, ','))
-        {
-            row.push_back(cell[0]);
-        }
-        this->data.push_back(row);
-
-    }
-
-    file.close();
 
 }
 
 template <>
-datapack<double>::datapack(const std::string &path)
+bool datapack<char>::next()
 {
 
-    std::ifstream file(path);
-    if (!file.is_open())
-    {
-        std::cerr << "Error: Could not open file." << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
+    this->data.clear();
+    
     std::string line;
-
-    while (std::getline(file, line))
+    if (!std::getline(this->file, line))
     {
+        return false;
+    }
+    std::stringstream ss(line);
+    std::string cell;
 
-        std::stringstream ss(line);
-        std::vector<double> row;
-        std::string cell;
-
-        while (std::getline(ss, cell, ','))
-        {
-            row.push_back(std::stod(cell));
-        }
-        this->data.push_back(row);
-
+    while (std::getline(ss, cell, ','))
+    {
+        this->data.push_back(cell[0]);
     }
 
-    file.close();
+    return true;
 
 }
 
 template <>
-datapack<float>::datapack(const std::string &path)
+bool datapack<double>::next()
 {
 
-    std::ifstream file(path);
-    if (!file.is_open())
-    {
-        std::cerr << "Error: Could not open file." << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
+    this->data.clear();
+    
     std::string line;
-
-    while (std::getline(file, line))
+    if (!std::getline(this->file, line))
     {
+        return false;
+    }
+    std::stringstream ss(line);
+    std::string cell;
 
-        std::stringstream ss(line);
-        std::vector<float> row;
-        std::string cell;
-
-        while (std::getline(ss, cell, ','))
-        {
-            row.push_back(std::stof(cell));
-        }
-        this->data.push_back(row);
-
+    while (std::getline(ss, cell, ','))
+    {
+        this->data.push_back(std::stod(cell));
     }
 
-    file.close();
+    return true;
 
 }
 
 template <>
-datapack<int>::datapack(const std::string &path)
+bool datapack<float>::next()
 {
 
-    std::ifstream file(path);
-    if (!file.is_open())
-    {
-        std::cerr << "Error: Could not open file." << std::endl;
-        exit(EXIT_FAILURE);
-    }
-
+    this->data.clear();
+    
     std::string line;
-
-    while (std::getline(file, line))
+    if (!std::getline(this->file, line))
     {
+        return false;
+    }
+    std::stringstream ss(line);
+    std::string cell;
 
-        std::stringstream ss(line);
-        std::vector<int> row;
-        std::string cell;
-
-        while (std::getline(ss, cell, ','))
-        {
-            row.push_back(std::stoi(cell));
-        }
-        this->data.push_back(row);
-
+    while (std::getline(ss, cell, ','))
+    {
+        this->data.push_back(std::stof(cell));
     }
 
-    file.close();
+    return true;
 
 }
 
 template <>
-datapack<std::string>::datapack(const std::string &path)
+bool datapack<int>::next()
 {
 
-    std::ifstream file(path);
-    if (!file.is_open())
-    {
-        std::cerr << "Error: Could not open file." << std::endl;
-        exit(EXIT_FAILURE);
-    }
+    this->data.clear();
 
     std::string line;
-
-    while (std::getline(file, line))
+    if (!std::getline(this->file, line))
     {
+        return false;
+    }
+    std::stringstream ss(line);
+    std::string cell;
 
-        std::stringstream ss(line);
-        std::vector<std::string> row;
-        std::string cell;
-
-        while (std::getline(ss, cell, ','))
-        {
-            row.push_back(cell);
-        }
-        this->data.push_back(row);
-
+    while (std::getline(ss, cell, ','))
+    {
+        this->data.push_back(std::stoi(cell));
     }
 
-    file.close();
+    return true;
+
+}
+
+template <>
+bool datapack<std::string>::next()
+{
+
+    this->data.clear();
+
+    std::string line;
+    if (!std::getline(this->file, line))
+    {
+        return false;
+    }
+    std::stringstream ss(line);
+    std::string cell;
+
+    while (std::getline(ss, cell, ','))
+    {
+        this->data.push_back(cell);
+    }
+
+    return true;
 
 }
 
 template <typename T>
-std::vector<T> datapack<T>::operator[](size_t index)
+std::vector<T> datapack<T>::get_row()
 {
-
-    if (index >= this->data.size())
-    {
-        throw std::out_of_range("Index out of range");
-    }
-
-    return this->data[index];
-
+    return this->data;
 }
 
 template <typename T>
-void datapack<T>::print()
+void datapack<T>::close()
 {
-    for (const std::vector<T>& row : data)
-    {
-        for (const T& cell : row)
-        {
-            std::cout << cell << " ";
-        }
-        std::cout << std::endl;
-    }
-}
 
-template <typename T>
-size_t datapack<T>::size()
-{
-    return this->data.size();
+    this->file.close();
+
 }
