@@ -47,7 +47,7 @@ for epoch in range(1):
         loss += l
 
         if i % 100 == 99:
-            print("[Step %d] Average Loss %.3f | Accuracy: %d%%" % (i + 1, loss / (i + 1), 100 * correct / (i + 1)))
+            print("[Step %d] Average Loss %.3f | Accuracy: %.3f" % (i + 1, loss / (i + 1), 100 * correct / (i + 1)))
 
 print("Training end!")
 
@@ -62,6 +62,6 @@ for i, (image, label) in enumerate(zip(test_images, test_labels)):
     loss += l
 
     if i % 100 == 99:
-        print("[Step %d] Average Loss %.3f | Accuracy: %d%%" % (i + 1, loss / (i + 1), 100 * correct / (i + 1)))
+        print("[Step %d] Average Loss %.3f | Accuracy: %.3f" % (i + 1, loss / (i + 1), 100 * correct / (i + 1)))
 
 print("Testing end!")
