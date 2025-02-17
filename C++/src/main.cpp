@@ -38,7 +38,7 @@ int main()
                 std::vector<double> line;
                 for (int j = 0; j < 28; j++)
                 {
-                    line.push_back(row[28 * i + j + 1] / 255 - 0.5);
+                    line.push_back(row[28 * j + i + 1] / 255 - 0.5);
                 }
                 image.push_back(line);
             }
