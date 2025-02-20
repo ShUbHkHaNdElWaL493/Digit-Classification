@@ -42,7 +42,7 @@ std::vector<std::vector<std::vector<double>>> convolution_layer_2D::feed_forward
                 std::vector<double> cell;
                 for (int l = j - this->dimensions[0] + 2; l <= j + this->dimensions[0] - 2; l++)
                 {
-                    for (int m = k - this->dimensions[0] + 2; m <= k + this->dimensions[0] - 2; m++)
+                    for (int m = k - this->dimensions[1] + 2; m <= k + this->dimensions[1] - 2; m++)
                     {
                         cell.push_back(input[l][m]);
                     }
