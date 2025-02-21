@@ -3,16 +3,23 @@
 */
 
 #include <datapack.h>
+#include <fstream>
 #include <iostream>
 #include <layers.h>
 #include <math.h>
+#include <omp.h>
 
 int main()
 {
 
-    std::cout << "\nBASIC CONVOLUTION NEURAL NETWORK IMPLEMENTATION" << std::endl;
+    std::cout << "\nCONVOLUTION NEURAL NETWORK IMPLEMENTATION FOR MNIST CLASSIFICATION" << std::endl;
 
     datapack<double> sample;
+
+    std::ofstream file;
+    file.open("results.csv", std::ios::out | std::ios::app);
+    double start, end;
+    file << NUM_THREADS << ",";
 
     convolution_layer_2D c(8, {3, 3});
     pooling_layer_2D p({2, 2});
@@ -22,7 +29,7 @@ int main()
     int count = 0;
     int positive = 0;
     double loss = 0;
-
+    start = omp_get_wtime();
     for (int epoch = 0; epoch < 3; epoch++)
     {
         
@@ -86,17 +93,16 @@ int main()
         sample.close();
 
     }
-    
+    end = omp_get_wtime();
+    file << end - start << ",";
     std::cout << "\nTraining complete!\n" << std::endl;
-
 
     std::cout << "\nTesting start!" << std::endl;
     count = 0;
     positive = 0;
     loss = 0;
-        
+    start = omp_get_wtime();
     sample.open("dataset/emnist-mnist-test.csv");
-
     while (sample.next())
     {
 
@@ -146,9 +152,9 @@ int main()
         count++;
 
     }
-
     sample.close();
-
+    end = omp_get_wtime();
+    file << end - start << "\n";
     std::cout << "\nTesting complete!\n" << std::endl;
 
     return 0;

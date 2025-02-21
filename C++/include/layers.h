@@ -7,6 +7,8 @@
 
 #include <neuron.h>
 
+#define NUM_THREADS 1
+
 class convolution_layer_2D
 {
 

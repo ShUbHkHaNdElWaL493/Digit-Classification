@@ -94,9 +94,9 @@ DIGIT_CLASSIFIER_EXTERNAL_OBJECTS =
 /home/shubh_khandelwal/Documents/Projects/Digit\ Classification/C++/DIGIT_CLASSIFIER: CMakeFiles/DIGIT_CLASSIFIER.dir/build.make
 /home/shubh_khandelwal/Documents/Projects/Digit\ Classification/C++/DIGIT_CLASSIFIER: include/libDATAPACK.a
 /home/shubh_khandelwal/Documents/Projects/Digit\ Classification/C++/DIGIT_CLASSIFIER: include/libLAYERS.a
-/home/shubh_khandelwal/Documents/Projects/Digit\ Classification/C++/DIGIT_CLASSIFIER: include/libNEURON.a
 /home/shubh_khandelwal/Documents/Projects/Digit\ Classification/C++/DIGIT_CLASSIFIER: /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so
 /home/shubh_khandelwal/Documents/Projects/Digit\ Classification/C++/DIGIT_CLASSIFIER: /usr/lib/x86_64-linux-gnu/libpthread.a
+/home/shubh_khandelwal/Documents/Projects/Digit\ Classification/C++/DIGIT_CLASSIFIER: include/libNEURON.a
 /home/shubh_khandelwal/Documents/Projects/Digit\ Classification/C++/DIGIT_CLASSIFIER: CMakeFiles/DIGIT_CLASSIFIER.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable \"/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/DIGIT_CLASSIFIER\""
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DIGIT_CLASSIFIER.dir/link.txt --verbose=$(VERBOSE)

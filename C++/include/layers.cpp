@@ -7,8 +7,6 @@
 #include "layers.h"
 #include <omp.h>
 
-#define NUM_THREADS 1
-
 convolution_layer_2D::convolution_layer_2D(int number_of_filters, std::vector<int> filter_dimensions)
 {
 
