@@ -6,7 +6,6 @@
 #include <iostream>
 #include <layers.h>
 #include <math.h>
-#include <unistd.h>
 
 int main()
 {

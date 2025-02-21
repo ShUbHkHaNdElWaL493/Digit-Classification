@@ -29,20 +29,20 @@ std::vector<std::vector<std::vector<double>>> convolution_layer_2D::feed_forward
 
     this->input = input;
 
-    std::vector<std::vector<std::vector<double>>> output;
+    std::vector<std::vector<std::vector<double>>> output(this->filters.size());
     
     for (int i = 0; i < this->filters.size(); i++)
     {
         std::vector<std::vector<double>> filter_output;
-        for (int j = this->dimensions[0] - 2; j < input.size() - this->dimensions[0] + 2; j++)
+        for (int j = (int) this->dimensions[0] / 2; j < (int) input.size() - this->dimensions[0] / 2; j++)
         {
             std::vector<double> row;
-            for (int k = this->dimensions[1] - 2; k < input.size() - this->dimensions[1] + 2; k++)
+            for (int k = (int) this->dimensions[1] / 2; k < (int) input.size() - this->dimensions[1] / 2; k++)
             {
                 std::vector<double> cell;
-                for (int l = j - this->dimensions[0] + 2; l <= j + this->dimensions[0] - 2; l++)
+                for (int l = (int) j - this->dimensions[0] / 2; l <= (int) j + this->dimensions[0] / 2; l++)
                 {
-                    for (int m = k - this->dimensions[1] + 2; m <= k + this->dimensions[1] - 2; m++)
+                    for (int m = (int) k - this->dimensions[1] / 2; m <= (int) k + this->dimensions[1] / 2; m++)
                     {
                         cell.push_back(input[l][m]);
                     }
@@ -51,7 +51,7 @@ std::vector<std::vector<std::vector<double>>> convolution_layer_2D::feed_forward
             }
             filter_output.push_back(row);
         }
-        output.push_back(filter_output);
+        output[i] = filter_output;
     }
 
     return output;
@@ -97,7 +97,7 @@ std::vector<std::vector<std::vector<double>>> pooling_layer_2D::feed_forward(std
 
     this->input = input;
 
-    std::vector<std::vector<std::vector<double>>> output;
+    std::vector<std::vector<std::vector<double>>> output(input.size());
     for (int i = 0; i < input.size(); i++)
     {
         std::vector<std::vector<double>> filter_output;
@@ -118,7 +118,7 @@ std::vector<std::vector<std::vector<double>>> pooling_layer_2D::feed_forward(std
             }
             filter_output.push_back(row);
         }
-        output.push_back(filter_output);
+        output[i] = filter_output;
     }
 
     return output;
