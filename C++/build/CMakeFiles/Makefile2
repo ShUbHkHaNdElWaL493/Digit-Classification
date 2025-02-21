@@ -99,9 +99,9 @@ include/clean: include/CMakeFiles/LAYERS.dir/clean
 # Target rules for target CMakeFiles/DIGIT_CLASSIFIER.dir
 
 # All Build rule for target.
-CMakeFiles/DIGIT_CLASSIFIER.dir/all: include/CMakeFiles/DATAPACK.dir/all
-CMakeFiles/DIGIT_CLASSIFIER.dir/all: include/CMakeFiles/NEURON.dir/all
 CMakeFiles/DIGIT_CLASSIFIER.dir/all: include/CMakeFiles/LAYERS.dir/all
+CMakeFiles/DIGIT_CLASSIFIER.dir/all: include/CMakeFiles/NEURON.dir/all
+CMakeFiles/DIGIT_CLASSIFIER.dir/all: include/CMakeFiles/DATAPACK.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DIGIT_CLASSIFIER.dir/build.make CMakeFiles/DIGIT_CLASSIFIER.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DIGIT_CLASSIFIER.dir/build.make CMakeFiles/DIGIT_CLASSIFIER.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/CMakeFiles" --progress-num=3,4 "Built target DIGIT_CLASSIFIER"

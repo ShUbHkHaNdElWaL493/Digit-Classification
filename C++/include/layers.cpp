@@ -5,6 +5,9 @@
 #include <algorithm>
 #include <cmath>
 #include "layers.h"
+#include <omp.h>
+
+#define NUM_THREADS 1
 
 convolution_layer_2D::convolution_layer_2D(int number_of_filters, std::vector<int> filter_dimensions)
 {
@@ -28,9 +31,9 @@ std::vector<std::vector<std::vector<double>>> convolution_layer_2D::feed_forward
 {
 
     this->input = input;
-
     std::vector<std::vector<std::vector<double>>> output(this->filters.size());
-    
+
+    #pragma omp parallel for num_threads(NUM_THREADS)
     for (int i = 0; i < this->filters.size(); i++)
     {
         std::vector<std::vector<double>> filter_output;
@@ -61,6 +64,7 @@ std::vector<std::vector<std::vector<double>>> convolution_layer_2D::feed_forward
 void convolution_layer_2D::back_propagate(std::vector<std::vector<std::vector<double>>> dL_dout, double learn_rate)
 {
 
+    #pragma omp parallel for num_threads(NUM_THREADS)
     for (int i = 0; i < this->filters.size(); i++)
     {
         std::vector<double> dL_dfilter((this->dimensions[0] * this->dimensions[1]), 0);
@@ -96,8 +100,9 @@ std::vector<std::vector<std::vector<double>>> pooling_layer_2D::feed_forward(std
 {
 
     this->input = input;
-
     std::vector<std::vector<std::vector<double>>> output(input.size());
+
+    #pragma omp parallel for num_threads(NUM_THREADS)
     for (int i = 0; i < input.size(); i++)
     {
         std::vector<std::vector<double>> filter_output;
@@ -140,6 +145,7 @@ std::vector<std::vector<std::vector<double>>> pooling_layer_2D::back_propagate(s
         dL_din.push_back(grid);
     }
 
+    #pragma omp parallel for num_threads(NUM_THREADS)
     for (int i = 0; i < this->input.size(); i++)
     {
         for (int j = 0; j < this->input[i].size(); j += this->dimensions[0])
