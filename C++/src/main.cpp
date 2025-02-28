@@ -10,7 +10,7 @@
 int main()
 {
 
-    std::cout << "\nCONVOLUTION NEURAL NETWORK IMPLEMENTATION FOR MNIST CLASSIFICATION" << std::endl;
+    std::cout << "\nCONVOLUTION NEURAL NETWORK IMPLEMENTATION" << std::endl;
 
     datapack<double> sample;
 
