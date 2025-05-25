@@ -1,8 +1,0 @@
-/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/CMakeFiles/DIGIT_CLASSIFIER.dir
-/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/CMakeFiles/edit_cache.dir
-/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/CMakeFiles/rebuild_cache.dir
-/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/include/CMakeFiles/DATAPACK.dir
-/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/include/CMakeFiles/NEURON.dir
-/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/include/CMakeFiles/LAYERS.dir
-/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/include/CMakeFiles/edit_cache.dir
-/home/shubh_khandelwal/Documents/Projects/Digit Classification/C++/build/include/CMakeFiles/rebuild_cache.dir

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libLAYERS.a CMakeFiles/LAYERS.dir/layers.cpp.o
-/usr/bin/ranlib libLAYERS.a

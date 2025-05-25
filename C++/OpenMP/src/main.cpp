@@ -25,7 +25,7 @@ int main()
     for (int epoch = 0; epoch < 3; epoch++)
     {
         
-        sample.open("dataset/emnist-mnist-train.csv");
+        sample.open("../dataset/emnist-mnist-train.csv");
 
         while (sample.next())
         {
@@ -91,7 +91,7 @@ int main()
     count = 0;
     positive = 0;
     loss = 0;
-    sample.open("dataset/emnist-mnist-test.csv");
+    sample.open("../dataset/emnist-mnist-test.csv");
     while (sample.next())
     {
 
